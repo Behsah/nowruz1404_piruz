@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+
+    <title>nowruz</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Noto Nastaliq Urdu", serif;
+            font-weight: 400;
+            font-style: normal;
+            outline: none;
+            border: none;
+            text-align: center;
+        }
+
+        body {
+            background-image: url(carpet2.jpg), linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+            direction: rtl;
+            font-size: 16px;
+            line-height: 2;
+            font-family: "Noto Nastaliq Urdu", serif
+        }
+
+        #formContainer {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensures it doesn't shrink */
+            width: 100%;
+            padding: 20px;
+        }
+
+            #formContainer::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.3); /* Dark overlay with 40% opacity */
+                z-index: -1; /* Keep the overlay behind the content */
+            }
+
+        #form {
+            padding: 20px;
+            background: rgba(155, 157, 138,0.5);
+            border-radius: 10px;
+            box-shadow: 4px 4px 10px gray;
+        }
+
+            #form h2 {
+                font-size: 2em;
+            }
+
+        input {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #837963;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input, button {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        /* 🎉 POP-UP STYLING */
+        #popup {
+            width: 70%;
+            max-width: 600px;
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /*background: rgba(0, 0, 0, 0.7);*/ /* Semi-transparent black */
+            padding: 30px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7); /* Soft shadow */
+            border-radius: 15px;
+            /*color: #fff;*/ /* White text for contrast */
+            background: rgba(155, 157, 138,0.5);
+            border-radius: 10px;
+            box-shadow: 4px 4px 10px gray;
+            border: none;
+            outline: none;
+        }
+
+            #popup h2 {
+                font-size: 2em;
+                color: #FFD700; /* Gold color for festive look */
+            }
+
+            #popup p {
+                font-size: 1.2em;
+                margin-top: 10px;
+            }
+
+            /* Button style inside pop-up */
+            #popup button {
+                margin-top: 15px;
+                padding: 10px 20px;
+                background-color: #8D8277;
+                color: white;
+                border: none;
+                outline: none;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+
+        button {
+            transition: transform 0.4s;
+        }
+
+            button:hover {
+                transform: scale(1,0.8);
+                background-color: #8D8277;
+            }
+
+            button:focus {
+                outline: 2px solid #FFD700; /* Add a focus outline for accessibility */
+            }
+
+        .numbers {
+            font-family: 'YourNumberFont', sans-serif;
+        }
+
+        @media (max-width: 600px) {
+            #formContainer {
+                padding: 50px 10px;
+            }
+
+            #form, #popup {
+                width: 95%; /* Make it take most of the screen width */
+                max-width: 500px; /* Prevent it from being too wide */
+            }
+
+            #popup {
+                padding: 20px; /* Adjust padding for a balanced look */
+            }
+        }
+
+
+        @media (max-width: 1024px) {
+            #form {
+                width: 80%;
+                font-size: 20px;
+            }
+        }
+
+        #form input,
+        #form button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px auto; /* Centers both */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="formContainer">
+        <div id="form">
+            <h2>نوروز &nbsp; پيروز!</h2>
+            <input type="text" id="name" placeholder="نام خود را وارد كنيد">
+            <!--<input type="password" id="pass" placeholder="رمز عبور">-->
+            <button onclick="showPopup()">آغاز</button>
+        </div>
+    </div>
+
+    <!-- 🎉 POP-UP MESSAGE -->
+    <div id="popup">
+        <h2><span id="userName"></span> عزيز،<br /> سال &nbsp;&nbsp;&nbsp;نو &nbsp;&nbsp;&nbsp;فرخنده</h2>
+        <p style="font-size:18px;">
+            همه ساله بخت تو &nbsp;&nbsp;&nbsp;پیروز باد
+            <br />
+            شبان سیه &nbsp;&nbsp;&nbsp;بر تو &nbsp;&nbsp;&nbsp;نوروز باد
+            <br />
+            <br />
+            نوروز سرآغاز بهار است و&nbsp;&nbsp;&nbsp;بی تردید این آغاز فرصتی است برای تجدید&nbsp;&nbsp;&nbsp; پیمان&nbsp;&nbsp;&nbsp; با آرزوهای &nbsp;&nbsp;&nbsp;پر طراوت.
+            نوروزتان &nbsp;&nbsp;&nbsp;بهاری&nbsp;&nbsp;&nbsp; و&nbsp;&nbsp;&nbsp;دلپذیر.
+            <br />
+            با آرزوي بهترين ها براي شما<br />مرضيه صبور
+            <br />
+            نوروز <span class="numbers">۱۴۰۴</span>
+        </p>
+        <button onclick="closePopup()">بستن</button>
+        <!--<p id="poet">
+            &nbsp;
+        </p>-->
+
+    </div>
+
+    <script>
+        function showPopup() {
+            let name = document.getElementById("name").value;
+            if (name) {
+                document.getElementById("userName").innerText = name;
+                document.getElementById("popup").style.display = "block";
+                document.getElementById("form").style.display = "none";
+
+            } else {
+                alert("Please enter your name!");
+            }
+        }
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+//        function choosingFaal() {
+//            let x = [
+//                `چون عهده نمی‌شود کسی فردا را
+//<br>
+//  حالی خوش دار این دل پر سودا را`,
+//                `یک کوزه شراب تا به هم نوش کنیم
+//<br>
+//زآن پیش که کوزه‌ها کنند از گل ما`,
+//                `
+//بر چهره‌ی گل نسیم نوروز خوش است
+//<br>
+//در صحن چمن روی دل‌افروز خوش است`,
+//                `می نوش به ماهتاب ای ماه که ماه
+//<br>
+//بسیار بتابد و نیابد ما را`,
+//                `
+//صوفی! مذهب عشق از پی شرع نیست
+//<br>
+//باده‌ی خوش که در دست نمی‌گیرد کس`];
+//            let max = 3;
+//            let min = 0;
+//            let r = (Math.random() * (max - min + 1)) + min;
+
+//            r = Math.floor(r);
+
+//            document.getElementById("poet").innerHTML = "\"" + x[r] +"\"";
+//        }
+    </script>
+
+</body>
+</html>
